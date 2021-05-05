@@ -28,6 +28,12 @@
             z-index: -2;
         }
         
+        #copyright {
+            top: 97vh;
+            position: absolute;
+            right: 0;
+        }
+        
         #inner {
             background-image: url('1.jpg');
         }
@@ -163,6 +169,7 @@
     </div>
     <div id="outher">
         <div id="inner">
+            <div id="copyright"></div>
         </div>
     </div>
 
@@ -199,42 +206,109 @@
             initialTime = 5;
         }
 
-        var imgs = [
-            '1.jpg',
-            '2.jpg',
-            '3.jpg',
-            '4.jpg',
-            '5.jpg',
-            '6.jpg',
-            '7.jpg',
-            '8.jpg',
-            '9.jpg',
-            '10.jpg',
-            '11.jpg',
-            '12.jpg',
-            '13.jpg',
-            '14.jpg',
-            '15.jpg',
-            '16.jpg',
-            '17.jpg',
-            '18.jpg',
-            '19.jpg',
-            '20.jpg',
-            '21.jpg',
-            '22.jpg',
-            '23.jpg',
-            '24.jpg',
-            '25.jpg',
-            '26.jpg',
-            '27.jpg',
-            '28.jpg',
-            '29.jpg',
-            '30.jpg',
-            '31.jpg',
-            '32.jpg',
-            '33.jpg',
-            '34.jpg',
-        ];
+        var imgs = [{
+            origin: 'https://www.flickr.com/photos/jocelyn777/25689592607/',
+            src: '1.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/joanbrebo/29700781198/',
+            src: '2.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/131947100@N08/26739785608/',
+            src: '3.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/blattboldt/45887785791/',
+            src: '4.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/oscarfh/37495430962/',
+            src: '5.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/scrubhiker/44546466155/',
+            src: '6.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/lennykphotography/33102246874/',
+            src: '7.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/neelsandrine/44366256521/',
+            src: '8.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/130287893@N05/46818782305/',
+            src: '9.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/pedrocaetano/38379115094/',
+            src: '10.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/terryott/39403671372/',
+            src: '11.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/harquail/47288124681/',
+            src: '12.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/collins_family/39748862545/',
+            src: '13.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/damirmn/36865200770/',
+            src: '14.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/131947100@N08/36466286492/',
+            src: '15.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/75487768@N04/38559581986/',
+            src: '16.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/75487768@N04/31628278140/',
+            src: '17.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/75487768@N04/30973260633/',
+            src: '18.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/75487768@N04/39594177861/',
+            src: '19.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/75487768@N04/6809540467/',
+            src: '20.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/75487768@N04/38004374914/',
+            src: '21.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/franzj/7375809852/',
+            src: '22.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/sashomasho/260136080/',
+            src: '23.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/150203417@N08/33809280974/',
+            src: '24.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/tim_gorman/7529595228/',
+            src: '25.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/105637782@N04/10327378784/',
+            src: '26.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/h-studio/3924238584/',
+            src: '27.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/130287893@N05/40768912033/',
+            src: '28.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/130287893@N05/32792076727/',
+            src: '29.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/briarcraft/46505901765/',
+            src: '30.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/130287893@N05/47735512971/',
+            src: '31.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/134741223@N04/21922881665/',
+            src: '32.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/martinpalmqvist/24522429052/',
+            src: '33.jpg'
+        }, {
+            origin: 'https://www.flickr.com/photos/akgypsy37/48749740311/',
+            src: '34.jpg'
+        }, ];
         var imgPointer = 1;
 
         function shuffle(array) {
@@ -257,9 +331,14 @@
             return array;
         }
 
+        function setCopyright(url) {
+            $("#copyright").html("<a target='_blank' href='" + url + "'>" + url + "</a>");
+        }
+
         function switchImages() {
             $('#inner').fadeTo('slow', 0.3, function() {
-                $(this).css('background-image', 'url(' + imgs[imgPointer] + ')');
+                $(this).css('background-image', 'url(' + imgs[imgPointer].src + ')');
+                setCopyright(imgs[imgPointer].origin);
             }).fadeTo('slow', 1, function() {
                 imgPointer = imgPointer + 1;
 
@@ -267,7 +346,7 @@
                     imgPointer = 0;
                 }
 
-                $("#outher ").css('background-image', 'url(' + imgs[imgPointer] + ')');
+                $("#outher").css('background-image', 'url(' + imgs[imgPointer].src + ')');
                 setTimeout(switchImages, imageSwitchTimeout);
             });
         }
@@ -310,16 +389,17 @@
 
         $(function() {
             shuffle(imgs);
-            $("#outher ").css('background-image', 'url(' + imgs[imgPointer] + ')');
+            setCopyright('https://www.flickr.com/photos/jocelyn777/25689592607/');
+            $("#outher").css('background-image', 'url(' + imgs[imgPointer].src + ')');
             setTimeout(switchImages, imageSwitchTimeout);
 
-            $("body ").keydown(function() {
+            $("body").keydown(function() {
                 startTimeAgain();
             });
-            $("body ").mousemove(function() {
+            $("body").mousemove(function() {
                 startTimeAgain();
             });
-            $("body ").click(function() {
+            $("body").click(function() {
                 startTimeAgain();
             });
 
